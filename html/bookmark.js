@@ -1,3 +1,9 @@
+/* Add this as the url to your new bookmark
+
+javascript:if(!document.getElementById('debug-bookmark')||document.getElementById('debug-bookmark').style.display=='none'){var%20b=document.body;if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.type='text/javascript');void(z.src='http://ratkinson.com/bookmark.js');void(b.appendChild(z));}else{}}
+
+*/
+
 function gaHighlight() {
   var b = document.getElementsByTagName('body'),
       els = b[0].getElementsByTagName('*'),
