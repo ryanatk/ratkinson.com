@@ -21,50 +21,48 @@ function gaHighlight() {
 }
 
 function formFill() {
-  var fake = {},
-      fakeName = randString(4) + ' ' + randString(4),
-      fakePhone = Math.round(Math.random() * 10000000000),
-      fakeAddress = Math.round(Math.random() * 1000) + ' ' + randString(4),
-      fakeCity = randString(8),
-      fakeState = 'NV',
-      fakeZip = Math.round(Math.random() * 100000),
-      fieldsets = [{'id':'newShipAdr', 'fields':[
-                     {'id':'name', 'val':fakeName},
-                     {'id':'phone_number', 'val':fakePhone},
-                     {'id':'address', 'val':fakeAddress},
-                     {'id':'city', 'val':fakeCity},
-                     {'id':'state', 'val':fakeState},
-                     {'id':'postal', 'val':fakeZip}]},
-                   {'id':'newPymtType', 'fields':[
-                     {'id':'creditCard.name', 'val':fakeName},
-                     {'id':'creditCard.plainTextNumber', 'val':'4111111111111111'},
-                     {'id':'creditCard.phone_number', 'val':fakePhone},
-                     {'id':'creditCard.address', 'val':fakeAddress},
-                     {'id':'creditCard.city', 'val':fakeCity},
-                     {'id':'creditCard.state', 'val':fakeState},
-                     {'id':'creditCard.postal', 'val':fakeZip}]}
-                  ];
+  var fake = {};
+      fake.name = randString(4) + ' ' + randString(4);
+      fake.phone = Math.round(Math.random() * 10000000000);
+      fake.address1 = Math.round(Math.random() * 1000) + ' ' + randString(4);
+      fake.city = randString(8);
+      fake.state = 'NV';
+      fake.postalCode = Math.round(Math.random() * 100000),
+      fake.plainTextNumber = '4111111111111111',
+      fake.email = randString(6) + '@' + randString(5) + '.com';
+      fake.emailConfirm = fake.email;
+      fieldsets = ['newShipAdr', 'newPymtType', 'guestInfo', 'createOrEditAddressCommand', 'createOrEditCCardCommand'];
 
   for (var i = 0; i < fieldsets.length; i++) {
-    var fs = fieldsets[i];
-    if (document.getElementById(fs.id)) {
-      for (var ii = 0; ii < fs.fields.length; ii++) {
-        var field = fs.fields[ii];
-        document.getElementById(field.id).value = field.val;
+    var fieldset = fieldsets[i];
+
+    if (document.getElementById(fieldset)) {
+      var fs = document.getElementById(fieldset),
+          inputs = fs.getElementsByTagName('input'),
+          selects = fs.getElementsByTagName('select');
+      applyValue(inputs);
+      applyValue(selects);
+    }
+  }
+
+  function applyValue(fields) {
+    for (var ii = 0; ii < fields.length; ii++) {
+      var field = fields[ii],
+          idParts = field.id ? field.id.split('.') : ['noId'],
+          id = idParts[idParts.length - 1];
+      if (fake[id]) {
+        field.value = fake[id];
       }
     }
   }
-}
 
-function randString(len) {
-  var randy = [];
-  for (var i = 0; i < len; i++) {
-    randy.push(String.fromCharCode(97 + Math.round(Math.random() * 25)));
+  function randString(len) {
+    var randy = [];
+    for (var i = 0; i < len; i++) {
+      randy.push(String.fromCharCode(97 + Math.round(Math.random() * 25)));
+    }
+    return randy.join('');
   }
-  return randy.join('');
-}
-
-function randSelect() {
 }
 
 function altTags() {
