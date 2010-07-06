@@ -21,30 +21,29 @@ function gaHighlight() {
 }
 
 function formFill() {
-  var fake = {};
-      fake.name = randString(4) + ' ' + randString(4);
-      fake.phone = Math.round(Math.random() * 10000000000);
-      fake.address = Math.round(Math.random() * 1000) + ' ' + randString(4);
-      fake.city = randString(8);
-      fake.state = 'NV';
-      fake.zip = Math.round(Math.random() * 100000);
-
-  fieldsets = [{'id':'newShipAdr', 'fields':[
-                 {'id':'name', 'val':fake.name},
-                 {'id':'phone_number', 'val':fake.phone},
-                 {'id':'address', 'val':fake.address},
-                 {'id':'city', 'val':fake.city},
-                 {'id':'state', 'val':fake.state},
-                 {'id':'postal', 'val':fake.zip}]},
-               {'id':'newPymtType', 'fields':[
-                 {'id':'creditCard.name', 'val':fake.name},
-                 {'id':'creditCard.plainTextNumber', 'val':'4111111111111111'},
-                 {'id':'creditCard.phone_number', 'val':fake.phone},
-                 {'id':'creditCard.address', 'val':fake.address},
-                 {'id':'creditCard.city', 'val':fake.city},
-                 {'id':'creditCard.state', 'val':fake.state},
-                 {'id':'creditCard.postal', 'val':fake.zip}]}
-               ];
+  var fake = {},
+      fakeName = randString(4) + ' ' + randString(4),
+      fakePhone = Math.round(Math.random() * 10000000000),
+      fakeAddress = Math.round(Math.random() * 1000) + ' ' + randString(4),
+      fakeCity = randString(8),
+      fakeState = 'NV',
+      fakeZip = Math.round(Math.random() * 100000),
+      fieldsets = [{'id':'newShipAdr', 'fields':[
+                     {'id':'name', 'val':fakeName},
+                     {'id':'phone_number', 'val':fakePhone},
+                     {'id':'address', 'val':fakeAddress},
+                     {'id':'city', 'val':fakeCity},
+                     {'id':'state', 'val':fakeState},
+                     {'id':'postal', 'val':fakeZip}]},
+                   {'id':'newPymtType', 'fields':[
+                     {'id':'creditCard.name', 'val':fakeName},
+                     {'id':'creditCard.plainTextNumber', 'val':'4111111111111111'},
+                     {'id':'creditCard.phone_number', 'val':fakePhone},
+                     {'id':'creditCard.address', 'val':fakeAddress},
+                     {'id':'creditCard.city', 'val':fakeCity},
+                     {'id':'creditCard.state', 'val':fakeState},
+                     {'id':'creditCard.postal', 'val':fakeZip}]}
+                  ];
 
   for (var i = 0; i < fieldsets.length; i++) {
     var fs = fieldsets[i];
@@ -55,7 +54,6 @@ function formFill() {
       }
     }
   }
-
 }
 
 function randString(len) {
