@@ -27,7 +27,7 @@ function formFill() {
       fake.address1 = Math.round(Math.random() * 1000) + ' ' + randString(4);
       fake.city = randString(8);
       fake.state = 'NV';
-      fake.postalCode = Math.round(Math.random() * 100000),
+      fake.postalCode = 89074,
       fake.plainTextNumber = '4111111111111111',
       fake.email = randString(6) + '@' + randString(5) + '.com';
       fake.emailConfirm = fake.email;
