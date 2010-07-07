@@ -23,7 +23,7 @@ function gaHighlight() {
 function formFill() {
   var fake = {};
       fake.name = randString(4) + ' ' + randString(4);
-      fake.phone = Math.round(Math.random() * 10000000000);
+      fake.phoneNumber = Math.round(Math.random() * 10000000000);
       fake.address1 = Math.round(Math.random() * 1000) + ' ' + randString(4);
       fake.city = randString(8);
       fake.state = 'NV';
@@ -31,6 +31,7 @@ function formFill() {
       fake.plainTextNumber = '4111111111111111',
       fake.email = randString(6) + '@' + randString(5) + '.com';
       fake.emailConfirm = fake.email;
+      fake.expirationYear = 2014;
       fieldsets = ['newShipAdr', 'newPymtType', 'guestInfo', 'createOrEditAddressCommand', 'createOrEditCCardCommand'];
 
   for (var i = 0; i < fieldsets.length; i++) {
