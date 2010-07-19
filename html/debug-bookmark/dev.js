@@ -119,6 +119,28 @@ function whichZapi() {
   xmlhttp.send();
 }
 
+/* is ccProcessor down? */
+/*
+function ccProcDown() {
+  var divId = 'ccProcDown',
+      divPosition = {'top':'15px', 'left':'415px'},
+      divStyles = ['{max-width:160px;}'];
+      banner = createFixedDiv(divId, divPosition, divStyles),
+      msg = 'uh oh, i think ccProcessor might be down. you better call somebody',
+      xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+    console.log(xmlhttp.responseText);
+      msg = (xmlhttp.responseText.document.getElementsByTagName('pre')[0].innerHTML == "OK") ? 'ccProcessor is working fine' : msg;
+    }
+    banner.innerHTML = msg;
+    b.appendChild(banner);
+  }
+  xmlhttp.open("GET","https://test.paymentech.zappos.com:8445/ccprocessor/Processor.action?doHeartbeat=",true);
+  xmlhttp.send();
+}
+
 /* create fixed pos div. used by menu and other messages */
 function createFixedDiv(id, position, styles) {
   if (document.getElementById(id)) {
@@ -162,7 +184,8 @@ function createFixedDiv(id, position, styles) {
                    {'name':'Form Fill',       'fun':formFill,     'desc':'auto fills forms'},
                    {'name':'Find Hotspots',   'fun':findHotspots, 'desc':'find and outline hotspots in orange'},
                    {'name':'Is it Drupal?',   'fun':drupalTest,   'desc':'is this page drupal?'},
-                   {'name':'Which zapi?',     'fun':whichZapi,    'desc':'what zapi is this?'}
+                   {'name':'Which zapi?',     'fun':whichZapi,    'desc':'what zapi is this?'}//,
+                   //{'name':'ccProcessor?',    'fun':ccProcDown,   'desc':'is ccProcessor down?'}
                   ],
       menuLength = menuItems.length,
       menu = createFixedDiv(divId, divPosition, divStyles);
