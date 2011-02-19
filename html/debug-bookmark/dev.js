@@ -1,13 +1,13 @@
 /* Add this as the url to your new bookmark
 
-javascript:if(!document.getElementById('debug-bookmark')||document.getElementById('debug-bookmark').style.display=='none'){var%20b=document.body;if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.type='text/javascript');void(z.src='http://ratkinson.com/debug-bookmark/stable.js');void(b.appendChild(z));}else{}}
+javascript:(function(){var%20el=document.getElementById('debug-bookmark');if(el){void(el.style.display='block');}else{var%20b=document.body;if(b&&!document.xmlVersion){var%20s=document.createElement('script');s.type='text/javascript';void(s.src='http://ratkinson.com/bookmark.js');b.appendChild(s);}}})();
 
 */
 
 /* find and outline elements with gae-click class in red */
 function gaHighlight() {
-  var b = document.getElementsByTagName('body'),
-      els = b[0].getElementsByTagName('*'),
+  var b = document.body,
+      els = b.getElementsByTagName('*'),
       elsLength = els.length;
   for(i = 0; i < elsLength; i++) {
     var el = els[i];
@@ -79,7 +79,8 @@ function findHotspots() {
 
 /* is this page drupal? */
 function drupalTest() {
-  var imgs = document.getElementsByTagName('IMG'),
+  var b = document.body,
+      imgs = document.getElementsByTagName('IMG'),
       imgsLength = imgs.length,
       msg = 'Nope, it\'s not Drupal',
       divId = 'isItDrupal',
@@ -100,7 +101,8 @@ function drupalTest() {
 
 /* which zapi am i using? */
 function whichZapi() {
-  var divId = 'whichZapi',
+  var b = document.body,
+      divId = 'whichZapi',
       divPosition = {'top':'15px', 'left':'15px'},
       divStyles = ['{max-width:350px;}'];
       banner = createFixedDiv(divId, divPosition, divStyles),
@@ -122,7 +124,8 @@ function whichZapi() {
 /* is ccProcessor down? */
 /*
 function ccProcDown() {
-  var divId = 'ccProcDown',
+  var b = document.body,
+      divId = 'ccProcDown',
       divPosition = {'top':'15px', 'left':'415px'},
       divStyles = ['{max-width:160px;}'];
       banner = createFixedDiv(divId, divPosition, divStyles),
@@ -175,7 +178,8 @@ function createFixedDiv(id, position, styles) {
 }
 
 (function(){
-  var divId = 'debug-bookmark',
+  var b = document.body,
+      divId = 'debug-bookmark',
       divPosition = {'top':'15px', 'right':'15px'},
       divStyles = ['a {display:block; padding:5px 3px; font-weight:bold; text-decoration:none; color:#669;}',
                    'a:hover {cursor:pointer; text-decoration:underline; color:#c00;}',
