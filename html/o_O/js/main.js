@@ -1,9 +1,6 @@
-while (typeof $j == 'undefined') {
-  console.log('eff');
-}
-
 (function () {
-   $ = $j; 
+ // eff
+   $ = jQuery; 
    $(document).ready(function() {
      setupItWorks();
    });
@@ -11,4 +8,4 @@ while (typeof $j == 'undefined') {
    function setupItWorks() {
      console.log('it works');
    }
- })();
+})();
