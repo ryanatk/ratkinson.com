@@ -1,6 +1,8 @@
 /* CSS */
-html {}
+html {font:14px Helvetica; line-height:1.4; color:#555;}
 body {}
+
+header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 
 #header {}
 
@@ -8,7 +10,42 @@ body {}
 
 #tabs {}
 
-#feeds {}
+#feeds {padding:10px 0;}
+#feeds h2, #feeds li {padding:10px;}
+#feeds li.post {display:block;}
+#feeds li.friend {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.1, rgb(243,243,247)),
+    color-stop(0.9, rgb(251,251,255))
+  );
+}
+#feeds li.sport {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.1, rgb(251,243,235)),
+    color-stop(0.9, rgb(255,247,239))
+  );
+}
+#feeds li.me {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.1, rgb(255,255,215)),
+    color-stop(0.9, rgb(255,255,239))
+  );
+}
+
+#feeds li span {display:block;}
+#feeds li span.author {}
+#feeds li span.comment {}
+#feeds li span.datetime {}
+#feeds li a.location {}
 
 #manage {}
 
