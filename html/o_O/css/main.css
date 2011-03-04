@@ -8,15 +8,34 @@ header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 
 #content {}
 
-#tabs li, #tabs a {display:block; float:left; height:80px;}
-#tabs li {text-align:center; background-color:#ccc; border:1px solid #555; border-right:0; border-left:0;}
-#tabs li:first-child {border-radius:14px 0 0 14px;}
-#tabs li:last-child {border-radius:0 14px 14px 0;}
-#tabs a {width:140px; border:1px solid transparent; border-right-color:#555; border-left-color:white;}
+#tabNav li, #tabs a {display:block; float:left; height:80px;}
+#tabNav li {text-align:center; background-color:#ccc; border:1px solid #555; border-right:0; border-left:0;}
+#tabNav li:first-child {border-radius:14px 0 0 14px;}
+#tabNav li:last-child {border-radius:0 14px 14px 0;}
+#tabNav a {width:140px; border:1px solid transparent; border-right-color:#555; border-left-color:white;}
+
+#tabNav {}
+#tabNav a.selected {background:#faa;}
+
+section {display:none;}
+section.selected {display:block;}
 
 #feeds {padding:10px 0;}
 #feeds h2, #feeds li {padding:10px;}
 #feeds li.post {display:block;}
+
+#feeds li span {display:block;}
+#feeds li span.author {float:left;}
+#feeds li time {clear:left; float:left;}
+#feeds li p.comment {float:right; padding:6px 12px; border:1px solid #eee; border-radius:7px;}
+#feeds li a.location {display:inline-block; text-indent:-999px; width:20px; height:34px; background:url('../img/pin.png') no-repeat; overflow:hidden;}
+
+#manage {}
+
+#footer {}
+
+
+/* Gradients are down here because they're ugly */
 #feeds li.friend {
   background-image: -webkit-gradient(
     linear,
@@ -51,9 +70,19 @@ header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 #feeds li span.datetime {}
 #feeds li a.location {}
 
-#comment textarea {width:99.5%; height:120px;}
-#comment .quickTag li {display:block; float:left; width:32.7%; height:90px; border:1px solid #ccc; text-align:center;}
-
 #manage {}
 
 #footer {}
+#feeds li p.comment {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.01, rgb(255,255,255)),
+    color-stop(0.3, rgb(247,247,247)),
+    color-stop(0.99, rgb(255,255,255))
+  );
+}
+
+#comment textarea {width:99.5%; height:120px;}
+#comment .quickTag li {display:block; float:left; width:32.7%; height:90px; border:1px solid #ccc; text-align:center;}
