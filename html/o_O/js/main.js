@@ -52,10 +52,10 @@
   function setupMyFeeds() {
     var requestFeeds = $.ajax({
       type: 'GET',
-      crossDomain: true,
       dataType: 'jsonp',
       jsonpCallback: 'gas',
-      url: 'http://crystal.local:8080/api/o_OReport/sportId/1?callback=?'
+      cache: true,
+      url: 'http://crystal.local:8080/api/o_OReport/sportId/1'
     });
   }
 
