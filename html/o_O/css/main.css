@@ -1,5 +1,17 @@
 /* CSS */
-html {font:normal 14px/1.4 Helvetica, Verdana, sans-serif; color:#555;}
+html {font:normal 14px/1.4 Helvetica, Verdana, sans-serif; color:#292929;}
+/*
+http://www.colorschemer.com/schemes/viewscheme.php?id=779
+#59708C - med blue
+#9ABABB - light bluegreen
+#CDD3D3 - gray
+#E6EEEE - ice blue
+#F3F3F3 - ice white
+#BABABA - light gray
+#999999 - med gray
+#333333 - darkest gray
+#534B48 - grayish brown
+*/
 body {}
 
 header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
@@ -8,27 +20,33 @@ header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 
 #content {}
 
+a:link {color:#59708C;}
+a:visited {color:#999999;}
+a:hover {color:#9ABABB;}
+a:active {}
+
 #tabNav li, #tabNav a {display:block; float:left; height:80px;}
-#tabNav li {text-align:center; background-color:#ccc; border:1px solid #555; border-right:0; border-left:0;}
-#tabNav li:first-child {border-radius:14px 0 0 14px;}
-#tabNav li:last-child {border-radius:0 14px 14px 0;}
-#tabNav a {width:140px; border:1px solid transparent; border-width:0 1px 0 1px; border-right-color:#555; border-left-color:white;}
-#tabNav a.selected {background:#faa;}
+#tabNav li {text-align:center; 1background-color:#ccc; 1border:1px solid #555; border-right:0; border-left:0;}
+#tabNav ul > li:first-child a {border-radius:14px 0 0 14px;}
+#tabNav ul > li:last-child a {border-radius:0 14px 14px 0;}
+#tabNav a {width:140px; border:1px solid transparent; border-width:0 1px 0 1px; border-right-color:#666; border-left-color:#ececec; background-color:#534B48;}
+#tabNav a.selected {background:#9ABABB;}
 #tabNav ul > li:first-child a {border-left:none;}
 #tabNav ul > li:last-child a {border-right:none;}
 
 section {display:none;}
 section.selected {display:block;}
 
+h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
 #feeds {padding:10px 0;}
 #feeds h2, #feeds li {padding:10px;}
 #feeds li.post {display:block;}
 
-#feeds li span {display:block;}
-#feeds li span.author {float:left;}
-#feeds li time {clear:left; float:left;}
-#feeds li p.comment {float:right; padding:6px 12px; border:1px solid #eee; border-radius:7px;}
-#feeds li a.location {display:inline-block; text-indent:-999px; width:20px; height:34px; background:url('../img/pin.png') no-repeat; overflow:hidden;}
+#feeds li span {display:inline-block;}
+#feeds li span.author {1float:left;}
+#feeds li time {1clear:left; 1float:left;}
+#feeds li p.comment {1float:right; padding:6px 12px; border:1px solid #eee; border-radius:7px;}
+#feeds li a.location {display:inline-block; padding-right:15px; 1text-indent:-999px; height:16px; background:url('../img/pin2.png') no-repeat 2px right; overflow:hidden;}
 
 #manage {}
 
@@ -64,7 +82,7 @@ section.selected {display:block;}
   );
 }
 
-#feeds li span {display:block;}
+#feeds li span {display:inline-block;}
 #feeds li span.author {}
 #feeds li span.comment {}
 #feeds li span.datetime {}
