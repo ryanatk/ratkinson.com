@@ -1,13 +1,13 @@
 (function () {
   var $ = jQuery;
-  var _ = function(output) {console.log(output);};
+  //var _ = function(output) {console.log(output);};
 
   $(document).ready(function () {
     setupTabs();
     setupMyFeeds();
   });
 
-  function setupTabs() { _('*** setupTabs() ***');
+  function setupTabs() { //_('*** setupTabs() ***');
     var DEFAULT_TAB = 'feeds';
     var tabNav = document.getElementById('tabNav');
 
@@ -54,6 +54,7 @@
       type: 'GET',
       crossDomain: true,
       dataType: 'jsonp',
+      jsonpCallback: 'gas',
       url: 'http://crystal.local:8080/api/o_OReport/sportId/1?callback=?'
     });
   }
