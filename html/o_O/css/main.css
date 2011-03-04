@@ -1,5 +1,5 @@
 /* CSS */
-html {font:14px Helvetica, Verdana, sans-serif; line-height:1.4; color:#555;}
+html {font:normal 14px/1.4 Helvetica, Verdana, sans-serif; color:#555;}
 body {}
 
 header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
@@ -8,14 +8,14 @@ header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 
 #content {}
 
-#tabNav li, #tabs a {display:block; float:left; height:80px;}
+#tabNav li, #tabNav a {display:block; float:left; height:80px;}
 #tabNav li {text-align:center; background-color:#ccc; border:1px solid #555; border-right:0; border-left:0;}
 #tabNav li:first-child {border-radius:14px 0 0 14px;}
 #tabNav li:last-child {border-radius:0 14px 14px 0;}
-#tabNav a {width:140px; border:1px solid transparent; border-right-color:#555; border-left-color:white;}
-
-#tabNav {}
+#tabNav a {width:140px; border:1px solid transparent; border-width:0 1px 0 1px; border-right-color:#555; border-left-color:white;}
 #tabNav a.selected {background:#faa;}
+#tabNav ul > li:first-child a {border-left:none;}
+#tabNav ul > li:last-child a {border-right:none;}
 
 section {display:none;}
 section.selected {display:block;}
