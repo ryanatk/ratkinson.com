@@ -1,31 +1,30 @@
 (function () {
-  $ = jQuery; 
-  $(document).ready(function() {
-    setupItWorks();
+  var $ = jQuery;
+  var _ = function(output) {console.log(output);};
+
+  $(document).ready(function () {
     setupTabs();
+    setupMyFeeds();
   });
 
-  function setupItWorks() {
-    console.log('** itWorks() **');
-  }
-
-  function setupTabs() {
-    console.log('** setupTabs() **');
+  function setupTabs() { _('*** setupTabs() ***');
+    var DEFAULT_TAB = 'feeds';
     var tabNav = document.getElementById('tabNav');
-    var defaultTab = 'feeds';
 
-    var urlHash = document.location.hash || defaultTab;
-    showSelectedTab(urlHash);
+    // show appropriate tab and section on page load
+    showSelected(document.location.hash);
 
-    var selection;
+    // delegate click event to tabNav
     $(tabNav).click(function (e) {
       var target = e.target;
       if (target.tagName === 'A') {
-        var uri = document.location.hash;
-        var previous = getTabName(document.location.hash) || defaultTab;
-        var previousSection = document.getElementById(previous);
+        // hide previous section
+        var previous = getTabName(document.location.hash);
+        var previousSection = document.getElementById(previous) || document.getElementById(DEFAULT_TAB);
         if (previousSection) previousSection.className = '';
-        showSelectedTab(target.href);
+
+        // show selected section
+        showSelected(target.href);
       }
     });
 
@@ -33,22 +32,30 @@
       return uri.split('#')[1] ? uri.split('#')[1].split('?')[0] : uri.split('?')[0];
     }
 
-    function showSelectedTab(uri) {
-      var sectionId = getTabName(uri);
-      var tabs = tabNav.getElementsByTagName('A');
-      var len = tabs.length;
+    function showSelected(uri) {
+      var section = document.getElementById(getTabName(uri)) || document.getElementById(DEFAULT_TAB);
+      var sectionId = section.id;
+
+      // show selected section
+      section.className = 'selected';
+
+      // highlight selected tab
+      var tabs = tabNav.getElementsByTagName('A'),
+          len = tabs.length;
       while (len--) {
         var tab = tabs[len];
-        if (tab.href == '#' + sectionId) {
-          tab.className = 'selected';
-        } else {
-          tab.className = '';
-        }
+        tab.className = (getTabName(tab.href) == sectionId) ? 'selected' : '';
       }
-      var showing = document.getElementById(sectionId) || document.getElementById(defaultTab);
-      showing.className = 'selected';
     }
   }
 
+  function setupMyFeeds() {
+    var requestFeeds = $.ajax({
+      type: 'GET',
+      crossDomain: true,
+      dataType: 'jsonp',
+      url: 'http://crystal.local:8080/api/o_OReport/sportId/1?callback=?'
+    });
+  }
 
 })();
