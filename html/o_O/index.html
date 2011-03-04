@@ -20,7 +20,7 @@
   <!-- *** Content *** -->
   <div id="content">
     <!-- Tabs -->
-    <nav id="tabs">
+    <nav id="tabNav">
       <a href="#feeds">Feeds</a>
       <a href="#manage">Manage</a>
       <a href="#comment">Comment</a>
@@ -50,10 +50,11 @@
         </li>
         <li class="post sport">
           <span class="author">Random G.</span>
-          <span class="comment">Totally killing it at badminton right now!</span>
-          <span class="datetime">2 days ago</span>
-          <span class="sport">Badminton</span>
-          <a class="location" href="http://maps.google.com/">Coordinates</a>
+          <time value="1996-12-19T16:39:57-08:00">2 days ago</time>
+          <p class="comment">Totally killing it at badminton right now!</p>
+          <span class="sport">Badminton
+            <a class="location" href="http://maps.google.com/">Coordinates</a>
+          </span>
         </li>
       </ol>
     </section>
@@ -79,7 +80,7 @@
         <input id="location" name="location" type="search">
         <input type="submit" value="Find">
 
-        <textarea cols="80%" rows="40%" placeholder="Whatchoo wanna say, boy?"></textarea>
+        <textarea cols="12" rows="4" placeholder="Whatchoo wanna say, boy?"></textarea>
 
         <ul class="quickTag">
           <li><a href="">Sport</a></li>
