@@ -39,7 +39,7 @@ section.selected {display:block;}
 
 h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
 #feeds {padding:10px 0;}
-#feeds h2, #feeds li {padding:10px;}
+h2, #feeds li {padding:10px;}
 #feeds li.post {display:block; border-bottom:1px dashed #CDD3D3; background-color:#E6EEEE; font-size:12px;}
 
 #feeds li span {display:inline-block;}
