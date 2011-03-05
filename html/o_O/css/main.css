@@ -1,5 +1,5 @@
 /* CSS */
-html {font:normal 14px/1.4 Helvetica, Verdana, sans-serif; color:#292929;}
+html {font:normal 14px/1.4 "Trebuchet MS", Helvetica, Verdana, sans-serif; color:#292929;}
 /*
 http://www.colorschemer.com/schemes/viewscheme.php?id=779
 #59708C - med blue
@@ -29,7 +29,7 @@ a:active {}
 #tabNav li {text-align:center; 1background-color:#ccc; 1border:1px solid #555; border-right:0; border-left:0;}
 #tabNav ul > li:first-child a {border-radius:14px 0 0 14px;}
 #tabNav ul > li:last-child a {border-radius:0 14px 14px 0;}
-#tabNav a {width:140px; border:1px solid transparent; border-width:0 1px 0 1px; border-right-color:#666; border-left-color:#ececec; background-color:#534B48;}
+#tabNav a {width:140px; border:1px solid transparent; border-width:0 1px 0 1px; border-right-color:#000; border-left-color:#999; background-color:#534B48;}
 #tabNav a.selected {background:#9ABABB;}
 #tabNav ul > li:first-child a {border-left:none;}
 #tabNav ul > li:last-child a {border-right:none;}
@@ -40,12 +40,12 @@ section.selected {display:block;}
 h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
 #feeds {padding:10px 0;}
 #feeds h2, #feeds li {padding:10px;}
-#feeds li.post {display:block;}
+#feeds li.post {display:block; border-bottom:1px dashed #CDD3D3; background-color:#E6EEEE; font-size:12px;}
 
 #feeds li span {display:inline-block;}
 #feeds li span.author {1float:left;}
 #feeds li time {1clear:left; 1float:left;}
-#feeds li p.comment {1float:right; padding:6px 12px; border:1px solid #eee; border-radius:7px;}
+#feeds li p.comment {1float:right; padding:6px 12px; margin-bottom:5px;  border:1px solid #FEFEFE; border-radius:5px; -webkit-box-shadow:2px 2px 3px 0 #CDD3D3; 1font:normal 16px/1 "trebuchet ms", georgia, "times new roman", times, serif;}
 #feeds li a.location {display:inline-block; padding-right:15px; 1text-indent:-999px; height:16px; background:url('../img/pin2.png') no-repeat 2px right; overflow:hidden;}
 
 #manage {}
@@ -53,7 +53,7 @@ h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
 #footer {}
 
 
-/* Gradients are down here because they're ugly */
+/* Gradients are down here because they're ugly 
 #feeds li.friend {
   background-image: -webkit-gradient(
     linear,
@@ -81,6 +81,7 @@ h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
     color-stop(0.9, rgb(255,255,239))
   );
 }
+*/
 
 #feeds li span {display:inline-block;}
 #feeds li span.author {}
