@@ -55,7 +55,7 @@
       var currentFeed = document.getElementById('currentFeed');
       $(currentFeed).click(function () {
         var feedPicker = document.createElement('DIV');
-        feedpicker.id = 'feedPicker';
+        feedPicker.id = 'feedPicker';
         var buffer = [];
         buffer.push('<a href="#feeds?friend=all">My Friends</a>');
         var showFaveSports = function (r) {
@@ -77,7 +77,7 @@
         for (var i=0; i < reportsLen; i++) {
           var report = reports[i];
           buffer.push('<li class="post">',
-                        '<span class="comment">', report.comment, '</span>',
+                        '<p class="comment">', report.comment, '</p>',
                         '<span class="author">', report.userName, '</span>',
                         'checked into <span class="sport"><a class="location" href="http://maps.google.com/">', report.sportName, '</a></span>',
                         '<time value="1996-12-19T16:39:57-08:00">', report.timestamp, '</time>.',
@@ -95,7 +95,7 @@
       dataType: 'json',
       jsonpCallback: 'Po_Op',
       cache: true,
-      url: 'http://crystal.local:8080/api/o_OReport/userId/1/list/all',
+      url: 'http://crystal.local:8080/api/o_O' + request,
       error: function () { console.log('error'); },
       success: function (data) {successFunction(data);}
     });
