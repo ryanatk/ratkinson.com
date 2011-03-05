@@ -34,7 +34,7 @@ a:active {}
 #tabNav ul > li:first-child a {border-left:none;}
 #tabNav ul > li:last-child a {border-right:none;}
 
-section {display:none;}
+section {clear:both; display:none;}
 section.selected {display:block;}
 
 h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
