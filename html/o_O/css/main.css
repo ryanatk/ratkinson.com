@@ -16,7 +16,7 @@ body {}
 
 header, nav, section, footer {padding:10px; border-bottom:1px solid #eee;}
 
-#header {}
+#header {display:none;}
 
 #content {}
 
@@ -45,12 +45,12 @@ h2 {clear:both; font-size:14px; text-transform:uppercase; font-weight:bold;}
 #feeds li span {display:inline-block;}
 #feeds li span.author {1float:left;}
 #feeds li time {1clear:left; 1float:left;}
-#feeds li p.comment {1float:right; padding:6px 12px; margin-bottom:5px;  border:1px solid #FEFEFE; border-radius:5px; -webkit-box-shadow:2px 2px 3px 0 #CDD3D3; 1font:normal 16px/1 "trebuchet ms", georgia, "times new roman", times, serif;}
+#feeds li p.comment {1float:right; padding:6px 12px; margin-bottom:5px;  border:1px solid #FEFEFE; border-radius:5px; -webkit-box-shadow:2px 2px 3px 0 #CDD3D3;}
 #feeds li a.location {display:inline-block; padding-right:15px; 1text-indent:-999px; height:16px; background:url('../img/pin2.png') no-repeat 2px right; overflow:hidden;}
 
 #manage {}
 
-#footer {}
+#footer {display:none;}
 
 
 /* Gradients are down here because they're ugly 
