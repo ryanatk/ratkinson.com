@@ -4,7 +4,7 @@
 
   $(document).ready(function () {
     setupTabs();
-    setupMyFeeds();
+    //setupMyFeeds();
   });
 
   function setupTabs() { //_('*** setupTabs() ***');
@@ -38,6 +38,7 @@
 
       // show selected section
       section.className = 'selected';
+      fillSection(sectionId);
 
       // highlight selected tab
       var tabs = tabNav.getElementsByTagName('A'),
@@ -49,14 +50,57 @@
     }
   }
 
-  function setupMyFeeds() {
-    var requestFeeds = $.ajax({
+  function fillSection(section) {
+    if (section == 'feeds') {
+      var currentFeed = document.getElementById('currentFeed');
+      $(currentFeed).click(function () {
+        var feedPicker = document.createElement('DIV');
+        feedpicker.id = 'feedPicker';
+        var buffer = [];
+        buffer.push('<a href="#feeds?friend=all">My Friends</a>');
+        var showFaveSports = function (r) {
+          var sports = r.faveSports;
+          var sportsLen = sports.length;
+          for (var i=0; i < sportsLen; i++) {
+            var sport = sports[i];
+            buffer.push('<a href="$feeds?sport=', sport.name, '">', sport.name, '</a>');
+          }
+        };
+        myAjaxCall('FaveSport/userId/1', showFaveSports)
+      });
+
+      var apiUrl = 'Report/userId/1/list/all';
+      var myCallback = function (r) {
+        var buffer = [];
+        var reports = r.reports;
+        var reportsLen = reports.length;
+        for (var i=0; i < reportsLen; i++) {
+          var report = reports[i];
+          buffer.push('<li class="post">',
+                        '<span class="comment">', report.comment, '</span>',
+                        '<span class="author">', report.userName, '</span>',
+                        'checked into <span class="sport"><a class="location" href="http://maps.google.com/">', report.sportName, '</a></span>',
+                        '<time value="1996-12-19T16:39:57-08:00">', report.timestamp, '</time>.',
+                      '</li>');
+        }
+        document.getElementById('reports').innerHTML = buffer.join('');
+      };
+      myAjaxCall(apiUrl, myCallback);
+    }
+  }
+
+  function myAjaxCall(request, successFunction) {
+    $.ajax({
       type: 'GET',
-      dataType: 'jsonp',
-      jsonpCallback: 'gas',
+      dataType: 'json',
+      jsonpCallback: 'Po_Op',
       cache: true,
-      url: 'http://crystal.local:8080/api/o_OReport/sportId/1'
+      url: 'http://crystal.local:8080/api/o_OReport/userId/1/list/all',
+      error: function () { console.log('error'); },
+      success: function (data) {successFunction(data);}
     });
   }
+
+  function changeFeeds() {}
 
 })();
