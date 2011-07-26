@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script>
+    $script('js/jquery-1.5.1.min.js', 'jquery', function () {
+      $script('js/main.js', 'main');
+    });
+  </script>
+  <link rel="stylesheet" href="css/reset.css" media="all" />
+  <link rel="stylesheet" href="css/main.css" media="all" />
+</head>
+<body>
+<table id="environments">
+  <tbody>
+    <tr id="live">
+      <td><a href="http://www.zappos.com/version.txt" class="env">LIVE</a></td>
+    </tr>
+    <tr id="qa">
+      <td><a href="http://qa.zeta.zappos.com/version.txt" class="env">qa.zeta</a></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

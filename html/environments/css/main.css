@@ -1,0 +1,9 @@
+body {width:980px; margin:10px auto; background:#333; font:15px Arial, Verdana, Sans-serif;}
+
+#environments {width:100%;}
+#environments a.env {padding:0 20px; line-height:3em; text-decoration:none; color:#fff;}
+#environments a.env:hover {text-decoration:underline;}
+#environments td {border:1px solid #444; border-width:1px 0;}
+#environments tr:hover {background:#444;}
+
+div#versions {float:right; width:600px; background:#fff;}
