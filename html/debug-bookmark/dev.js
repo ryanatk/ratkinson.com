@@ -4,51 +4,69 @@ javascript:(function(){var%20el=document.getElementById('debug-bookmark');if(el)
 
 */
 
-(function () {
-function debugBookmark() {
-  if (!(this instanceof debugBookmark)) {
-    return new debugBookmark();
-  }
+(function debugBookmark(win, doc) {
+  var db = {},
+      h = doc.head,
+      b = doc.body,
+      links = [];
+console.log(db, h, b, links);
 
-  var b = document.body,
-      divId = 'debug-bookmark',
-      divPosition = {'top':'15px', 'right':'15px'},
-      divStyles = ['a {display:block; padding:5px 3px; font-weight:bold; text-decoration:none; color:#669;}',
-                   'a:hover {cursor:pointer; text-decoration:underline; color:#c00;}',
-                   'a:active {color:orange;}'],
-      menuItems = [{'name':'Form Fill',       'fun':this.formFill,     'desc':'auto fills forms'},
-                   {'name':'Find gae-clicks', 'fun':this.gaHighlight,  'desc':'find and outline elements with gae-click class in red'},
-                   {'name':'Find Hotspots',   'fun':this.findHotspots, 'desc':'find and outline hotspots in orange'},
-                   {'name':'Is it Drupal?',   'fun':this.drupalTest,   'desc':'is this page drupal?'},
-                   {'name':'Which zapi?',     'fun':this.whichZapi,    'desc':'what zapi is this?'}
-                  ],
-      menuLength = menuItems.length,
-      menu = this.createFixedDiv(divId, divPosition, divStyles);
+  var setup = function () {
+    var divId = 'debug-bookmark',
+        divPosition = 'top:0; left:0;',
+        divStyles = ['#debug-bookmark {text-align:left;}',
+                     'a {display:block; padding:5px 3px; text-decoration:none; color:#fff;}',
+                     'a:hover {cursor:pointer; text-decoration:underline; color:#0f0;}',
+                     'a:active {color:#f00;}'],
+        menu = create(divId, divPosition, divStyles, menuLinks);
 
-  for (var i = 0; i < menuLength; i++) {
-    var item = menuItems[i],
-        link = document.createElement('A');
-    link.innerHTML = item.name;
-    link.onclick = item.fun;
-    link.title = item.desc;
-    menu.appendChild(link);
-  }
+    menu.innerHTML = links.join('');
+    b.appendChild(menu);
+console.log('menu', menu);
 
-  b.appendChild(menu);
+    b.onclick = function b_onclick(e) {
+      var target = e.target;
+      if (target.id && target.id == 'debug-bookmark')
+        return false;
+      if (target.parentNode.id && target.parentNode.id == 'debug-bookmark')
+        return false;
+      menu.style.display = 'none';
+    };
+  };
 
-  b.onclick = function b_onclick(e){
-    var target = e.target;
-    if (target.id && target.id == 'debug-bookmark')
+  var create = function (id, position, styles) {
+  // create fixed pos div. used by menu and other messages
+    if (document.getElementById(id)) {
+      document.getElementById(id).style.display = 'block';
       return false;
-    if (target.parentNode.id && target.parentNode.id == 'debug-bookmark')
-      return false;
-    menu.style.display = 'none';
-  }
-};
+    }
 
-debugBookmark.prototype = {                                                                                                                                                                             
-  gaHighlight: function db_gaHighlight () {
+    var stylesheet = document.createElement('style'),
+        css = [];
+    css.push('\n',
+                '#',id,' {position:fixed; ', position,' padding:15px; z-index:2147483647; font-size:14px;}\n',
+                '#',id,' {background:rgba(0,0,0,.85);}\n');
+
+    var len = styles.length;
+    for (var i = 0; i < len; i++) {
+      css.push('#',id,' ',styles[i],'\n');
+    }
+
+    stylesheet.innerHTML = css.join('');
+    document.getElementsByTagName('head')[0].appendChild(stylesheet);
+
+    var newDiv = document.createElement('DIV');
+    newDiv.id = id;
+    return newDiv;
+
+  };
+
+  setup();
+
+/*
   // find and outline elements with gae-click class in red
+  links.push('<a onclick="ga();">GAe Clicks</a>');
+  var ga = function () {
     var b = document.body,
         els = b.getElementsByTagName('*'),
         elsLength = els.length;
@@ -62,10 +80,11 @@ debugBookmark.prototype = {
         el.title = ga[1] + ' > ' + ga[2] + ' > ' + ga[3];
       }
     }
-  },
+  };
 
-  formFill: function db_formFill () {
   // auto fills forms
+  links.push('<a onclick="forms();">Form Fill</a>');
+  var forms = function () {
     var fake = {};
         fake.name = randString(4) + ' ' + randString(4);
         fake.phoneNumber = Math.round(Math.random() * 10000000000);
@@ -104,10 +123,11 @@ debugBookmark.prototype = {
       }
       return randy.join('');
     }
-  },
+  };
 
-  findHotspots: function db_findHotspots () {
   // find and outline hotspots in orange
+  links.push('<a onclick="hotspots();">Find Hotspots</a>');
+  var hotspots = function () {
     var imgs = document.getElementsByTagName('IMG'),
         imgsLength = imgs.length;
     for(i = 0; i < imgsLength; i++) {
@@ -118,10 +138,11 @@ debugBookmark.prototype = {
         img.style.outlineColor = 'orange';
       }
     }
-  },
+  };
 
-  drupalTest: function db_drupalTest () {
   // is this page drupal?
+  links.push('<a onclick="drupal();">Is it Drupal?</a>');
+  var drupal = function () {
     var b = document.body,
         imgs = document.getElementsByTagName('IMG'),
         imgsLength = imgs.length,
@@ -140,10 +161,11 @@ debugBookmark.prototype = {
 
     banner.innerHTML = msg;
     b.appendChild(banner);
-  },
+  };
 
-  whichZapi: function db_whichZapi () {
   // which zapi am i using?
+  links.push('<a onclick="zapi();">Which zapi?</a>');
+  var zapi = function () {
     var b = document.body,
         divId = 'whichZapi',
         divPosition = {'top':'15px', 'left':'15px'},
@@ -162,42 +184,8 @@ debugBookmark.prototype = {
     }
     xmlhttp.open("GET","/zapMeSomeInfo.do",true);
     xmlhttp.send();
-  },
+  };
+*/
 
-  createFixedDiv: function db_createFixedDiv (id, position, styles) {
-  // create fixed pos div. used by menu and other messages
-    if (document.getElementById(id)) {
-      document.getElementById(id).style.display = 'block';
-      return false;
-    }
-
-    var fixedPos = [];
-    for (var pos in position) {
-      fixedPos.push(pos,':',position[pos],';');
-    }
-
-    var stylesheet = document.createElement('style'),
-        css = [];
-    css.push('\n',
-                '#',id,' {position:fixed; ',fixedPos.join(''),' padding:15px; z-index:2147483647; font-size:14px;}\n',
-                '#',id,' {background:#fff;}\n',
-                '#',id,' {border:2px solid #fdfdfd; -webkit-border-radius:6px; -moz-border-radius:6px;}\n',
-                '#',id,' {-webkit-box-shadow:1px -1px 8px #aaa; -moz-box-shadow:3px 3px 3px #999;}\n');
-
-    var len = styles.length;
-    for (var i = 0; i < len; i++) {
-      css.push('#',id,' ',styles[i],'\n');
-    }
-
-    stylesheet.innerHTML = css.join('');
-    document.getElementsByTagName('head')[0].appendChild(stylesheet);
-
-    var newDiv = document.createElement('DIV');
-    newDiv.id = id;
-    return newDiv;
-  }
-};
-
-debugBookmark();
-})();
+})(window, document);
 
