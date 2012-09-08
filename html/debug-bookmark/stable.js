@@ -6,17 +6,39 @@ javascript:if(!document.getElementById('debug-bookmark')||document.getElementByI
 
 /* find and outline elements with gae-click class in red */
 function gaHighlight() {
-  var b = document.getElementsByTagName('body'),
-      els = b[0].getElementsByTagName('*'),
+  var stylesheet = document.createElement('style');
+
+  stylesheet.innerHTML = '.hasGae {outline:3px dotted red;} .noGae {outline:3px dotted green;}';
+  document.getElementsByTagName('head')[0].appendChild(stylesheet);
+
+  var b = document.body,
+      els = b.getElementsByTagName('*'),
       elsLength = els.length;
-  for(i = 0; i < elsLength; i++) {
-    var el = els[i];
-    if((el.className) && (el.className.match(/gae-click/))) {
-      el.style.outlineWidth = '3px';
-      el.style.outlineStyle = 'dotted';
-      el.style.outlineColor = 'red';
-      var ga = el.className.match(/gae-click\*([^*]+)\*([^*]+)\*([^ ]+)/);
+  for (i = 0; i < elsLength; i++) {
+    var el = els[i],
+        elClass = el.className || null;
+    if (elClass && elClass.match(/gae-click/)) {
+      var ga = elClass.match(/gae-click\*([^*]+)\*([^*]+)\*([^ ]+)/);
+      el.className = elClass + ' hasGae';
       el.title = ga[1] + ' > ' + ga[2] + ' > ' + ga[3];
+    } else {
+      var elTagName = el.tagName;
+      if ((elTagName === 'A' && !(elClass && elClass.match(/zph/))) || elTagName === 'BUTTON' || (elTagName === 'INPUT' && el.type === 'SUBMIT')) {
+        var hasGae = false;
+        var children = el.getElementsByTagName('*');
+        var ii=0;
+
+        while (!hasGae && (ii < children.length)) {
+          if (children[ii].className.match(/gae-click/)) {
+            hasGae = true;
+            break;
+          }
+          ii++;
+        }
+        if (!hasGae) {
+          el.className = elClass + ' noGae';
+        }
+      }
     }
   }
 }
