@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <title>container</title>
+</head>
+<body>
+  <h1>container</h1>
+  <script>
+    // all console.log from container start with +++
+    console.log('+++', 'CONTAINER');
+
+    // this will be set in a build property
+    var targetDomain = 'http://www.ryana804.com';
+
+    var hasPostMessage = !!window.postMessage;
+    console.log('---', '!!window.postMessage:', !!window.postMessage);
+
+    if (!hasPostMessage) {
+      // allows the iframe to access the container
+      // may not be needed in the container
+      document.domain = 'ratkinson.com';
+      console.log('+++', 'document.domain:', document.domain);
+    }
+
+    // add to existing onload
+    var existingOnload = window.onload;
+
+    window.onload = function () {
+      if (existingOnload) { existingOnload(); }
+
+      // create and setup iframe
+      var iframe = document.createElement('iframe');
+
+      iframe.id = 'pixelServer';
+      iframe.src = targetDomain + '/iframe.html';
+      iframe.onload = function () {
+        console.log('+++', 'IFRAME IS LOADED');
+        // passes info into iframe
+        if (hasPostMessage) {
+          iframe.contentWindow.postMessage(window.pixelInfo, targetDomain);
+        }
+      };
+
+      // append iframe
+      document.body.appendChild(iframe);
+    };
+  </script>
+
+  <script>
+    window.pixelInfo = {'cool':'beans'};
+  </script>
+</body>
+</html>

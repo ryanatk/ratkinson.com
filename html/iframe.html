@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+  <h1>iframe from the same domain</h1>
+  <p>this is an iframe where the pixels will live</p>
+
+  <script>
+    // all console.log from ifram start with ---
+    console.log('---', 'IFRAME');
+
+    // this will change depending on site
+    // there will be 10 (5 sites, http and https)
+    var containerDomain = 'ratkinson.com';
+    var info;
+
+/*
+    // test for browser support of postMessage
+    if (!!window.postMessage) {
+      window.addEventListener("message", function (e) {
+        // only fire if from our site
+        if (e.origin.indexOf(containerDomain) !== -1){
+          info = e.data;
+
+          // safely fire pixels
+          firePixels(info);
+        }
+      }, false);
+    }
+    // we will use document.domain for older browsers that dont support postMessage
+    else {
+      // cache the original domain to be set back after onload, before loading third party code
+      var originalDomain = document.domain;
+      console.log('---', 'originalDomain:', originalDomain);
+
+      // allows us to access the container window
+      document.domain = containerDomain;
+      console.log('---', 'document.domain:', document.domain);
+
+      // get the info that we need from the container
+      info = window.parent.pixelInfo;
+
+      // when document.domain is not exactly the same, all 3 of these set off warnings and dont work 
+      console.log('---', 'window:', window);
+      console.log('---', 'window.parent:', window.parent);
+      console.log('---', 'window.frameElement:', window.frameElement);
+      window.parent.document.body.setAttribute('bgcolor', 'red');
+
+      // set back to original domain to turn off access to container
+      document.domain = originalDomain;
+      console.log('---', 'document.domain:', document.domain);
+
+      // safely fire pixels
+      firePixels(info);
+    }
+*/
+      info = window.parent.pixelInfo;
+      firePixels(info);
+    
+    // based on what is in info, fire pixels
+    function firePixels(pixelInfo) {
+      console.log('---', 'pixelInfo:', pixelInfo);
+    }
+  </script>
+</body>
+</html>
